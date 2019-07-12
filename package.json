@@ -1,0 +1,23 @@
+{
+  "name": "NuxtShoppingCart",
+  "version": "1.0.0",
+  "description": "A session based Shopping Cart Project with NuxtJs",
+  "author": "Orhan Asım Arslan",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
