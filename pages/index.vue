@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <h3 class="text-center mt-3">Nuxt.js | Express.js | Session Kullanımı</h3>
+    <h3 class="text-center mt-3">Nuxt.js | Express.js | Session</h3>
     <div class="d-flex pt-3 justify-content-center" style="height: 100%">
         <Products :products="products" />
-        <Cart />
+        <Cart :cart="cart"/>
     </div>
   </div>
 </template>
@@ -19,6 +19,9 @@ export default {
     products(){
       //console.log(this.$store.getters.getProducts)
       return this.$store.getters.getProducts
+    },
+    cart(){
+      return this.$store.getters.getCart
     }
   }
 }

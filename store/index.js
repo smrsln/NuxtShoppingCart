@@ -22,13 +22,35 @@ return new Vuex.Store({
         nuxtServerInit(vuexContext,context){
             return context.$axios.get("/")
             .then(response =>{
-                
                 vuexContext.commit("setProducts" ,response.data.products)
+                vuexContext.commit("setCart", response.data.cart.items)
+                vuexContext.commit("setTotalPrice", response.data.cart.totalPrice)
             })
         },
-        addToCart(){vuexContext,product},
-        removeProduct(){vuexContext,product},
-        changeCount(){vuexContext,product}
+        addToCart(vuexContext,product){
+            this.$axios.post("/add-to-cart", {product: product})
+            .then(response => {
+                console.log(response.data.cart.items)
+                vuexContext.commit("setCart", response.data.cart.items)
+                vuexContext.commit("setTotalPrice", response.data.cart.totalPrice)
+
+            })
+        },
+        removeProduct(vuexContext,product){
+            this.$axios.post("/remove-product", {product: product})
+            .then(response => {
+                vuexContext.commit("setCart", response.data.cart.items)
+                vuexContext.commit("setTotalPrice", response.data.cart.totalPrice)
+            })
+        },
+        changeCount(vuexContext,product){
+            this.$axios.post("/change-count", {product: product})
+            .then(response => {
+                vuexContext.commit("setCart", response.data.cart.items)
+                vuexContext.commit("setTotalPrice", response.data.cart.totalPrice)
+
+            })
+        }
     },
     getters: {
         getProducts(state){
@@ -38,7 +60,7 @@ return new Vuex.Store({
         getCart(state){
             return state.cart
         },
-        getTotalPrice(){
+        getTotalPrice(state){
             return state.totalPrice
         }
     },
